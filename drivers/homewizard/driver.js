@@ -85,6 +85,36 @@ module.exports.init = function(devices_data, callback) {
 	callback (null, true);
 };
 
+module.exports.capabilities = {
+	homewizard_preset: {
+		get: function (device, callback) {
+			if (device instanceof Error) return callback(device);
+				getStatus(device.id);
+				callback(null, toString(devices[device.id].preset));
+			},
+        set: function( device_data, preset, callback ) {
+
+			var url = '/preset/' + preset;
+			homewizard.call(device_data.id, url, function(err, response) {
+				if (callback) callback(err, preset);
+			});
+
+			if (homey_lang == "nl") {
+				preset_text = preset_text_nl[preset];
+			} else {
+				preset_text = preset_text_en[preset];
+			}
+			Homey.log("Flow call preset : " + preset_text);
+			Homey.manager('flow').triggerDevice('preset_changed', { preset: Number(preset), preset_text: preset_text }, null, { id: homewizard_id } , (err) => {
+			if (err) return Homey.error('Error triggeringDevice:', err);
+			});
+
+			devices[device_data.id].preset = Number(preset);
+
+        }
+    },
+};
+
 module.exports.deleted = function( device_data ) {
     delete devices[device_data.id];
     if (Object.keys(devices).length === 0) {

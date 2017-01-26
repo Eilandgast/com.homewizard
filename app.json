@@ -3,7 +3,7 @@
 	"name": {
 		"en": "HomeWizard"
 	},
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"compatibility": ">=0.9",
 	"description": {
 		"en": "Control HomeWizard using Homey"
@@ -261,6 +261,43 @@
 			}]
 		}]
 	},
+	"capabilities": {
+        "homewizard_preset": {
+            "type": "enum",
+            "title": {
+                "en": "HomeWizard preset",
+				"nl": "HomeWizard preset"
+            },
+            "getable": true,
+            "setable": true,
+			"values": [
+			{	"id": "0",
+				"title": {
+					"en": "Home",
+					"nl": "Thuis"
+				}
+			},
+			{	"id": "1",
+				"title": {
+					"en": "Away",
+					"nl": "Afwezig"
+				}
+			},
+			{	"id": "2",
+				"title": {
+					"en": "Sleep",
+					"nl": "Slapen"
+				}
+			},
+			{	"id": "3",
+				"title": {
+					"en": "Vacation",
+					"nl": "Vakantie"
+				}
+			}
+			]
+        }
+    },
 	"drivers": [{
 		"id": "homewizard",
 		"name": {
