@@ -309,7 +309,19 @@
 			"small": "drivers/homewizard/assets/images/small.jpg"
 		},
 		"class": "appliances",
-		"capabilities": [],
+		"capabilities": ["homewizard_preset"],
+		"mobile": {
+			"components": [
+				{
+					"id": "icon",
+					"capabilities": [  ]
+				},
+				{
+					"id": "picker",
+					"capabilities": [ "homewizard_preset" ]
+				}
+			]
+		},
 		"pair": [{
 			"id": "start"
 		}, {
